@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* One consistent, visible focus ring for keyboard users across the site. */
+  :focus-visible {
+    outline: 2px solid #d4fb20;
+    outline-offset: 2px;
+  }
+
+  .bg-white :focus-visible,
+  .bg-surface :focus-visible,
+  .bg-surface-alt :focus-visible {
+    outline-color: #003be2;
+  }
+
+  img {
+    -webkit-user-drag: none;
+  }
+}
+
+@layer components {
+  /* Centred page container: 1200px content inside the 1440px Figma frame. */
+  .container-page {
+    @apply mx-auto w-full max-w-container px-5 sm:px-8 xl:px-0;
+  }
+
+  /* The blue "graph paper" background used in the hero, CTA, auth and 404 pages. */
+  .bg-grid {
+    background-color: #003be2;
+    background-image:
+      linear-gradient(to right, #1e52e5 1px, transparent 1px),
+      linear-gradient(to bottom, #1e52e5 1px, transparent 1px);
+    background-size: 120px 120px;
+    background-position: 0 -2px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Horizontal chip row on phones: still scrollable, without a visible scrollbar. */
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
